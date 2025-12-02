@@ -1,0 +1,10 @@
+com\mycompany\proyecto\TallerSanta.class
+com\mycompany\proyecto\modelo\Niño.class
+com\mycompany\proyecto\modelo\Regalo.class
+com\mycompany\proyecto\modelo\Usuario.class
+com\mycompany\proyecto\gestores\GestorRegalos.class
+com\mycompany\proyecto\gestores\GestorUsuarios.class
+com\mycompany\proyecto\gestores\GestorNiños.class
+com\mycompany\proyecto\utilidades\UtilidadesJSON.class
+com\mycompany\proyecto\gestores\GestorAsignaciones.class
+com\mycompany\proyecto\modelo\Asignacion.class
