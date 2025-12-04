@@ -1,15 +1,26 @@
 package com.mycompany.proyecto.modelo;
 
 /**
- * Clase que representa un usuario del sistema
+ * Representa un usuario del sistema con sus credenciales de acceso.
+ * Almacena el nombre de usuario y la contraseña para autenticacion.
+ * 
+ * @author Sistema Taller de Santa
  */
 public class Usuario {
     private String nombreUsuario;
     private String Contrasena;
     
+    /**
+     * Constructor por defecto
+     */
     public Usuario() {
     }
     
+    /**
+     * Constructor con parametros
+     * @param nombreUsuario Nombre unico del usuario
+     * @param Contrasena Contrasena del usuario
+     */
     public Usuario(String nombreUsuario, String Contrasena) {
         this.nombreUsuario = nombreUsuario;
         this.Contrasena = Contrasena;

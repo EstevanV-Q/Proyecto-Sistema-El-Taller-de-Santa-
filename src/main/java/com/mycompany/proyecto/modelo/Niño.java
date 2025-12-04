@@ -1,7 +1,10 @@
 package com.mycompany.proyecto.modelo;
 
 /**
- * Clase que representa un niño registrado en el sistema
+ * Representa un nino registrado para recibir regalos.
+ * Almacena informacion personal y de ubicacion del nino.
+ * 
+ * @author Sistema Taller de Santa
  */
 public class Niño {
     private String identificacion;
@@ -10,9 +13,20 @@ public class Niño {
     private String ciudad;
     private String direccionDetallada;
     
+    /**
+     * Constructor por defecto
+     */
     public Niño() {
     }
     
+    /**
+     * Constructor con todos los parametros
+     * @param identificacion Identificacion unica del nino
+     * @param nombreCompleto Nombre completo del nino
+     * @param edad Edad del nino (0-18)
+     * @param ciudad Ciudad de residencia
+     * @param direccionDetallada Direccion completa para envio
+     */
     public Niño(String identificacion, String nombreCompleto, int edad, String ciudad, String direccionDetallada) {
         this.identificacion = identificacion;
         this.nombreCompleto = nombreCompleto;

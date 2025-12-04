@@ -1,7 +1,10 @@
 package com.mycompany.proyecto.modelo;
 
 /**
- * Clase que representa un regalo en el inventario
+ * Representa un regalo en el inventario del taller.
+ * Contiene informacion del producto y controla la cantidad disponible.
+ * 
+ * @author Sistema Taller de Santa
  */
 public class Regalo {
     private String codigo;
@@ -10,9 +13,20 @@ public class Regalo {
     private String marca;
     private int cantidadDisponible;
     
+    /**
+     * Constructor por defecto
+     */
     public Regalo() {
     }
     
+    /**
+     * Constructor con todos los parametros
+     * @param codigo Codigo unico del regalo
+     * @param nombre Nombre del regalo
+     * @param descripcion Descripcion del producto
+     * @param marca Marca del regalo
+     * @param cantidadDisponible Cantidad disponible en inventario
+     */
     public Regalo(String codigo, String nombre, String descripcion, String marca, int cantidadDisponible) {
         this.codigo = codigo;
         this.nombre = nombre;
@@ -62,7 +76,8 @@ public class Regalo {
     }
     
     /**
-     * Descuenta una unidad del inventario
+     * Descuenta una unidad del inventario.
+     * Solo descuenta si hay disponibilidad mayor a cero.
      */
     public void descontar() {
         if (cantidadDisponible > 0) {
@@ -71,7 +86,8 @@ public class Regalo {
     }
     
     /**
-     * Reabastece el inventario con la cantidad especificada
+     * Reabastece el inventario agregando la cantidad especificada.
+     * @param cantidad Cantidad a agregar (debe ser mayor a cero)
      */
     public void reabastecer(int cantidad) {
         if (cantidad > 0) {

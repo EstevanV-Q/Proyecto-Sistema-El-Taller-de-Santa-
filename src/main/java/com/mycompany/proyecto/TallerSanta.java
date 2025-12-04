@@ -13,8 +13,18 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Clase principal del sistema "El Taller de Santa"
- * Sistema de gestión de regalos navideños y niños
+ * Clase principal del sistema "El Taller de Santa".
+ * 
+ * Sistema de gestion de regalos navidenos y ninos que permite:
+ * - Gestion de usuarios con autenticacion
+ * - Gestion de regalos (CRUD, reabastecimiento)
+ * - Gestion de ninos (CRUD)
+ * - Asignacion de regalos a ninos con descuento automatico
+ * - Generacion de reportes diversos
+ * 
+ * Los datos se persisten automaticamente en archivos JSON.
+ * 
+ * @author Sistema Taller de Santa
  */
 public class TallerSanta {
     private static Scanner scanner = new Scanner(System.in);
@@ -40,7 +50,8 @@ public class TallerSanta {
     }
     
     /**
-     * Muestra el menú principal del sistema
+     * Muestra el menu principal con opciones de registro e inicio de sesion.
+     * Bucle infinito hasta que el usuario seleccione salir.
      */
     private static void mostrarMenuPrincipal() {
         while (true) {
@@ -78,7 +89,8 @@ public class TallerSanta {
     }
     
     /**
-     * Registra un nuevo usuario
+     * Solicita datos y registra un nuevo usuario en el sistema.
+     * Muestra mensaje de exito o error segun el resultado.
      */
     private static void registrarUsuario() {
         System.out.println("\n=== REGISTRO DE USUARIO ===");
@@ -95,7 +107,9 @@ public class TallerSanta {
     }
     
     /**
-     * Inicia sesión en el sistema
+     * Solicita credenciales y valida el inicio de sesion.
+     * 
+     * @return true si las credenciales son correctas, false en caso contrario
      */
     private static boolean iniciarSesion() {
         System.out.println("\n=== INICIAR SESION ===");
@@ -115,7 +129,9 @@ public class TallerSanta {
     }
     
     /**
-     * Muestra el menú del sistema (después de iniciar sesión)
+     * Muestra el menu principal del sistema despues de iniciar sesion.
+     * Permite acceder a gestion de regalos, ninos, asignaciones y reportes.
+     * El bucle termina cuando el usuario cierra sesion.
      */
     private static void mostrarMenuSistema() {
         while (sesionIniciada) {

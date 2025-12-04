@@ -1,7 +1,10 @@
 package com.mycompany.proyecto.modelo;
 
 /**
- * Clase que representa la asignación de un regalo a un niño
+ * Representa la asignacion de un regalo a un nino.
+ * Relaciona un nino con un regalo especifico del inventario.
+ * 
+ * @author Sistema Taller de Santa
  */
 public class Asignacion {
     private String identificacionNiño;
@@ -9,9 +12,19 @@ public class Asignacion {
     private String nombreRegalo;
     private String marcaRegalo;
     
+    /**
+     * Constructor por defecto
+     */
     public Asignacion() {
     }
     
+    /**
+     * Constructor con todos los parametros
+     * @param identificacionNiño Identificacion del nino asignado
+     * @param codigoRegalo Codigo del regalo asignado
+     * @param nombreRegalo Nombre del regalo
+     * @param marcaRegalo Marca del regalo
+     */
     public Asignacion(String identificacionNiño, String codigoRegalo, String nombreRegalo, String marcaRegalo) {
         this.identificacionNiño = identificacionNiño;
         this.codigoRegalo = codigoRegalo;

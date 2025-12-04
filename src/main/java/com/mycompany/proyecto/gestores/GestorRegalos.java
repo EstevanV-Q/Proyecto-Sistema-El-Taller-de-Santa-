@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Clase gestora para manejar regalos del inventario
+ * Gestiona las operaciones relacionadas con regalos del inventario.
+ * Maneja CRUD completo, reabastecimiento y consultas por codigo o marca.
+ * Los datos se persisten automaticamente en archivo JSON.
+ * 
+ * @author Sistema Taller de Santa
  */
 public class GestorRegalos {
     private static final String ARCHIVO_REGALOS = "regalos.json";
@@ -31,7 +35,15 @@ public class GestorRegalos {
     }
     
     /**
-     * Registra un nuevo regalo
+     * Registra un nuevo regalo en el inventario.
+     * Valida que el codigo sea unico y que los datos sean validos.
+     * 
+     * @param codigo Codigo unico del regalo
+     * @param nombre Nombre del regalo
+     * @param descripcion Descripcion del producto
+     * @param marca Marca del regalo
+     * @param cantidad Cantidad inicial disponible
+     * @return true si se registro exitosamente, false si el codigo ya existe o datos invalidos
      */
     public boolean registrarRegalo(String codigo, String nombre, String descripcion, String marca, int cantidad) {
         if (codigo == null || codigo.trim().isEmpty()) {
@@ -60,7 +72,15 @@ public class GestorRegalos {
     }
     
     /**
-     * Modifica los datos de un regalo
+     * Modifica los datos de un regalo existente.
+     * Los parametros null se ignoran (no se modifican).
+     * 
+     * @param codigo Codigo del regalo a modificar
+     * @param nuevoNombre Nuevo nombre (null para mantener actual)
+     * @param nuevaDescripcion Nueva descripcion (null para mantener actual)
+     * @param nuevaMarca Nueva marca (null para mantener actual)
+     * @param nuevaCantidad Nueva cantidad (null para mantener actual)
+     * @return true si se modifico exitosamente, false si el regalo no existe
      */
     public boolean modificarRegalo(String codigo, String nuevoNombre, String nuevaDescripcion, 
                                    String nuevaMarca, Integer nuevaCantidad) {
@@ -87,7 +107,12 @@ public class GestorRegalos {
     }
     
     /**
-     * Elimina un regalo del inventario (solo si no tiene niños asignados)
+     * Elimina un regalo del inventario.
+     * Solo permite eliminar si no tiene ninos asignados.
+     * 
+     * @param codigo Codigo del regalo a eliminar
+     * @param gestorAsignaciones Gestor para verificar asignaciones
+     * @return true si se elimino exitosamente, false si no existe o tiene asignaciones
      */
     public boolean eliminarRegalo(String codigo, GestorAsignaciones gestorAsignaciones) {
         Regalo regalo = buscarPorCodigo(codigo);
@@ -106,7 +131,11 @@ public class GestorRegalos {
     }
     
     /**
-     * Reabastece el inventario de un regalo
+     * Reabastece el inventario agregando cantidad a un regalo existente.
+     * 
+     * @param codigo Codigo del regalo a reabastecer
+     * @param cantidad Cantidad a agregar (debe ser mayor a cero)
+     * @return true si se reabastecio exitosamente, false si no existe o cantidad invalida
      */
     public boolean reabastecerInventario(String codigo, int cantidad) {
         Regalo regalo = buscarPorCodigo(codigo);
@@ -123,7 +152,10 @@ public class GestorRegalos {
     }
     
     /**
-     * Busca un regalo por su código
+     * Busca un regalo por su codigo unico.
+     * 
+     * @param codigo Codigo del regalo a buscar
+     * @return Regalo encontrado o null si no existe
      */
     public Regalo buscarPorCodigo(String codigo) {
         for (Regalo regalo : regalos) {
@@ -142,7 +174,11 @@ public class GestorRegalos {
     }
     
     /**
-     * Obtiene regalos por marca
+     * Obtiene todos los regalos de una marca especifica.
+     * La busqueda es case-insensitive (no distingue mayusculas/minusculas).
+     * 
+     * @param marca Marca a buscar
+     * @return Lista de regalos de la marca especificada
      */
     public List<Regalo> getRegalosPorMarca(String marca) {
         List<Regalo> resultado = new ArrayList<>();
@@ -155,7 +191,11 @@ public class GestorRegalos {
     }
     
     /**
-     * Descuenta una unidad del inventario de un regalo
+     * Descuenta una unidad del inventario cuando se asigna un regalo.
+     * Solo descuenta si hay disponibilidad.
+     * 
+     * @param codigo Codigo del regalo a descontar
+     * @return true si se desconto exitosamente, false si no existe o no hay disponibilidad
      */
     public boolean descontarRegalo(String codigo) {
         Regalo regalo = buscarPorCodigo(codigo);

@@ -7,7 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Clase gestora para manejar asignaciones de regalos a niños
+ * Gestiona las asignaciones de regalos a ninos.
+ * Controla que un nino solo tenga un regalo y descuenta automaticamente del inventario.
+ * Los datos se persisten automaticamente en archivo JSON.
+ * 
+ * @author Sistema Taller de Santa
  */
 public class GestorAsignaciones {
     private static final String ARCHIVO_ASIGNACIONES = "asignaciones.json";
@@ -32,7 +36,14 @@ public class GestorAsignaciones {
     }
     
     /**
-     * Asigna un regalo a un niño
+     * Asigna un regalo a un nino.
+     * Valida que el nino no tenga regalo asignado y que haya disponibilidad.
+     * Descuenta automaticamente una unidad del inventario.
+     * 
+     * @param identificacionNiño Identificacion del nino a asignar
+     * @param regalo Regalo a asignar
+     * @param gestorRegalos Gestor para descontar del inventario
+     * @return true si se asigno exitosamente, false si ya tiene regalo o no hay disponibilidad
      */
     public boolean asignarRegalo(String identificacionNiño, Regalo regalo, GestorRegalos gestorRegalos) {
         if (identificacionNiño == null || identificacionNiño.trim().isEmpty()) {
@@ -70,7 +81,10 @@ public class GestorAsignaciones {
     }
     
     /**
-     * Busca asignaciones por identificación del niño
+     * Busca la asignacion de un nino por su identificacion.
+     * 
+     * @param identificacion Identificacion del nino
+     * @return Asignacion encontrada o null si no tiene asignacion
      */
     public Asignacion buscarPorIdentificacion(String identificacion) {
         for (Asignacion asignacion : asignaciones) {
@@ -82,14 +96,21 @@ public class GestorAsignaciones {
     }
     
     /**
-     * Verifica si un niño tiene una asignación
+     * Verifica si un nino tiene una asignacion de regalo.
+     * 
+     * @param identificacion Identificacion del nino
+     * @return true si tiene asignacion, false en caso contrario
      */
     public boolean tieneAsignacionPorIdentificacion(String identificacion) {
         return buscarPorIdentificacion(identificacion) != null;
     }
     
     /**
-     * Verifica si un regalo tiene asignaciones
+     * Verifica si un regalo tiene ninos asignados.
+     * Util para validar antes de eliminar un regalo.
+     * 
+     * @param codigoRegalo Codigo del regalo a verificar
+     * @return true si tiene asignaciones, false en caso contrario
      */
     public boolean tieneAsignacionPorCodigoRegalo(String codigoRegalo) {
         for (Asignacion asignacion : asignaciones) {

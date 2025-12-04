@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Clase gestora para manejar niños registrados
+ * Gestiona las operaciones relacionadas con ninos registrados.
+ * Maneja CRUD completo y validaciones de edad (0-18 años).
+ * Los datos se persisten automaticamente en archivo JSON.
+ * 
+ * @author Sistema Taller de Santa
  */
 public class GestorNiños {
     private static final String ARCHIVO_NIÑOS = "niños.json";
@@ -31,7 +35,15 @@ public class GestorNiños {
     }
     
     /**
-     * Registra un nuevo niño
+     * Registra un nuevo nino en el sistema.
+     * Valida que la identificacion sea unica y que la edad sea valida (0-18).
+     * 
+     * @param identificacion Identificacion unica del nino
+     * @param nombreCompleto Nombre completo del nino
+     * @param edad Edad del nino (debe estar entre 0 y 18)
+     * @param ciudad Ciudad de residencia
+     * @param direccionDetallada Direccion completa para envio
+     * @return true si se registro exitosamente, false si ya existe o datos invalidos
      */
     public boolean registrarNiño(String identificacion, String nombreCompleto, 
                                  int edad, String ciudad, String direccionDetallada) {
@@ -66,7 +78,15 @@ public class GestorNiños {
     }
     
     /**
-     * Modifica los datos de un niño
+     * Modifica los datos de un nino existente.
+     * Los parametros null se ignoran (no se modifican).
+     * 
+     * @param identificacion Identificacion del nino a modificar
+     * @param nuevoNombre Nuevo nombre (null para mantener actual)
+     * @param nuevaEdad Nueva edad (null para mantener actual, debe ser 0-18)
+     * @param nuevaCiudad Nueva ciudad (null para mantener actual)
+     * @param nuevaDireccion Nueva direccion (null para mantener actual)
+     * @return true si se modifico exitosamente, false si el nino no existe
      */
     public boolean modificarNiño(String identificacion, String nuevoNombre, 
                                  Integer nuevaEdad, String nuevaCiudad, String nuevaDireccion) {
@@ -93,7 +113,12 @@ public class GestorNiños {
     }
     
     /**
-     * Elimina un niño del registro (solo si no tiene regalo asignado)
+     * Elimina un nino del registro.
+     * Solo permite eliminar si no tiene regalo asignado.
+     * 
+     * @param identificacion Identificacion del nino a eliminar
+     * @param gestorAsignaciones Gestor para verificar asignaciones
+     * @return true si se elimino exitosamente, false si no existe o tiene asignacion
      */
     public boolean eliminarNiño(String identificacion, GestorAsignaciones gestorAsignaciones) {
         Niño niño = buscarPorIdentificacion(identificacion);
@@ -112,7 +137,10 @@ public class GestorNiños {
     }
     
     /**
-     * Busca un niño por su identificación
+     * Busca un nino por su identificacion unica.
+     * 
+     * @param identificacion Identificacion del nino a buscar
+     * @return Nino encontrado o null si no existe
      */
     public Niño buscarPorIdentificacion(String identificacion) {
         for (Niño niño : niños) {
